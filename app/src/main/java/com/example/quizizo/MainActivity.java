@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         new Repository().setNumberOfQuestions(2);
         new Repository().setCategory(32);
+
         new Repository().getQuestions(questionArrayList -> {
             for (Question question : questionArrayList) {
                 Log.d("Repo", "Question: " + question.getQuestion());

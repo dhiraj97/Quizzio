@@ -39,6 +39,8 @@ public class Repository {
     }
 
     ArrayList<String> categories = new ArrayList<>();
+
+    //Passing a asynchronous class object because of avoiding inconsistencies in data while fetching api
     public List<String> getCategories(final CategoryListAsyncResponse callback) {
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.GET, categoryUrl, null, response -> {
             try {
