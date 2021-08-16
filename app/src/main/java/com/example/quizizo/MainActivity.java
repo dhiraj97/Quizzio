@@ -34,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        /*new Repository().getCategories(categoryList -> {
+        new Repository().getCategories(categoryList -> {
 
             for (String category : categoryList) {
                 Log.d("Repo", category);
             }
-        });*/
+        });
 
     }
 }
