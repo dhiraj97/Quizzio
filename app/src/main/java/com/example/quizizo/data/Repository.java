@@ -76,6 +76,7 @@ public class Repository {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     Question question = new Question(Html.fromHtml(jsonObject.getString("question"), Html.FROM_HTML_MODE_COMPACT).toString(),
                             jsonObject.getBoolean("correct_answer"));
+                    Log.d("JsonObject", "getQuestions: "+ jsonObject.toString());
                     questionArrayList.add(question);
                 }
                 if(null != callBack) {
@@ -86,13 +87,11 @@ public class Repository {
             }
 
         }, error -> {
-            Log.d("Categories", "Cannot Load Questions!");
+            Log.d("Questions", "Cannot Load Questions!");
         });
 
        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
 
         return questionArrayList;
     }
-
-
 }

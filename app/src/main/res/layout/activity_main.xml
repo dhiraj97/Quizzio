@@ -1,131 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFC107"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#FFC107"
+        tools:context=".MainActivity">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/txtTitle"
-                style="@style/main_text_style"
-                android:layout_marginStart="16dp"
-                android:text="Quizzio"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/txt_question_number"
-                style="@style/main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="Question 45/665"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+                <TextView
+                    android:id="@+id/txtTitle"
+                    style="@style/main_text_style"
+                    android:layout_marginStart="16dp"
+                    android:text="Quizzio"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/txt_question"
-                android:layout_width="379dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:backgroundTint="#F3D785"
-                android:elevation="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_question_number" />
+                <TextView
+                    android:id="@+id/txt_question_number"
+                    style="@style/main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Question 45/665"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
-            <Button
-                android:id="@+id/btn_option1"
-                style="@style/main_text_style"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:backgroundTint="#D6584F"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_question" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardview"
+                    android:layout_width="379dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="#F3D785"
+                    android:elevation="20dp"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_question_number">
 
-            <Button
-                android:id="@+id/btn_option3"
-                style="@style/main_text_style"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:backgroundTint="#D6584F"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_option2" />
+                    <TextView
+                        android:id="@+id/txt_question"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:padding="8dp"
+                        android:text="Question" />
+                </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/btn_option2"
-                style="@style/main_text_style"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:backgroundTint="#D6584F"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_option1" />
+                <Button
+                    android:id="@+id/btn_option1"
+                    style="@style/main_text_style"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="24dp"
+                    android:backgroundTint="#D6584F"
+                    android:text="True"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardview" />
 
-            <Button
-                android:id="@+id/btn_option4"
-                style="@style/main_text_style"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:backgroundTint="#D6584F"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_option3" />
+                <Button
+                    android:id="@+id/btn_option3"
+                    style="@style/main_text_style"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="24dp"
+                    android:backgroundTint="#D6584F"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_option2" />
 
-            <Button
-                android:id="@+id/btn_next"
-                style="@style/main_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="25dp"
-                android:backgroundTint="#D6584F"
-                android:text="Next"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_option4" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <Button
+                    android:id="@+id/btn_option2"
+                    style="@style/main_text_style"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="24dp"
+                    android:backgroundTint="#D6584F"
+                    android:text="False"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_option1" />
+
+                <Button
+                    android:id="@+id/btn_option4"
+                    style="@style/main_text_style"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="24dp"
+                    android:backgroundTint="#D6584F"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_option3" />
+
+                <Button
+                    android:id="@+id/btn_next"
+                    style="@style/main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="25dp"
+                    android:backgroundTint="#D6584F"
+                    android:text="Next"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_option4" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
