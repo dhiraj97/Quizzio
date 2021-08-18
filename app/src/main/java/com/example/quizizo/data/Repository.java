@@ -99,6 +99,7 @@ public class Repository {
 
                     Log.d("questions"+i, question.toString());
 
+
                     questionArrayList.add(question);
 
                 }
@@ -119,6 +120,7 @@ public class Repository {
     }
 
     private void shuffle(String[] optionsArray) {
+        Log.d("inside shuffle", optionsArray[0]);
         for (int i = 0; i < optionsArray.length; i++) {
             int s = i *  (int) (Math.random() * (optionsArray.length - i));
 

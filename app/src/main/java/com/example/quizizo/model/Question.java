@@ -13,14 +13,17 @@ public class Question {
     public Question(String question, String correctAnswer) {
         this.question = question;
         this.correctAnswer = correctAnswer;
+        this.options = new String[4];
     }
 
-    public String[] getOptions() {
-        return options;
+    public String getOptions(int index) {
+        return options[index];
     }
 
     public void setOptions(String[] options) {
-        this.options = options;
+        for (int i = 0; i < options.length; i++) {
+            this.options[i] = options[i];
+        }
     }
 
     public String getQuestion() {

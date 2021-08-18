@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
         questionsList = new Repository().getQuestions(questionArrayList -> {
             updateQuestion();
-        /*    for (Question question : questionArrayList) {
-                Log.d("Repo", question.toString());
-            }*/
 
+            for (int i = 0; i < questionArrayList.size(); i++) {
+                Log.d(TAG, questionArrayList.get(i).toString());
+            }
         });
 
         new Repository().getCategories(categoryList -> {
@@ -65,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "updateQuestion: "+ questionsList.size());
         binding.txtQuestionNumber.setText("Question "+ (currentQuestionIndex+1) + "/" + questionsList.size());
         binding.txtQuestion.setText(questionsList.get(currentQuestionIndex).getQuestion());
+        binding.btnOption1.setText(questionsList.get(currentQuestionIndex).getOptions(0));
+        binding.btnOption2.setText(questionsList.get(currentQuestionIndex).getOptions(1));
+        binding.btnOption3.setText(questionsList.get(currentQuestionIndex).getOptions(2));
+        binding.btnOption4.setText(questionsList.get(currentQuestionIndex).getOptions(3));
     }
 
     @Override
