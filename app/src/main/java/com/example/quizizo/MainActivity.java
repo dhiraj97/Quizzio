@@ -1,5 +1,6 @@
 package com.example.quizizo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -44,11 +45,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        new Repository().setNumberOfQuestions(2);
-        new Repository().setCategory(32);
+
 
         errorSound = MediaPlayer.create(this, R.raw.animation_sounds_beep);
         correctAnswerSound = MediaPlayer.create(this, R.raw.animation_sounds_bubbles);
+
+
 
         questionsList = new Repository().getQuestions(questionArrayList -> {
             updateQuestion();
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, questionArrayList.get(i).toString());
             }
         });
+
+
 
         new Repository().getCategories(categoryList -> {
 
@@ -105,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
             checkAnswer(binding.btnOption4.getText().toString());
             updateQuestion();
         });
+
     }
 
     private void nextQuestion() {

@@ -18,8 +18,8 @@ import java.util.List;
 
 public class Repository {
     static String categoryUrl = "https://opentdb.com/api_category.php";
-    static int numberOfQuestions = 10;
-    static int category = 1;
+    static int numberOfQuestions = 2;
+    static int category = 32;
     static String questionsURL = "https://opentdb.com/api.php?amount=10&type=boolean";
     ArrayList<Question> questionArrayList = new ArrayList<>();
 
