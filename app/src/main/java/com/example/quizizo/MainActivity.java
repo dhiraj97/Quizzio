@@ -59,6 +59,29 @@ public class MainActivity extends AppCompatActivity {
                 updateQuestion();
             }
         });
+
+        binding.btnOption1.setOnClickListener(v -> {
+            checkAnswer(binding.btnOption1.getText().toString());
+        });
+        binding.btnOption2.setOnClickListener(v -> {
+            checkAnswer(binding.btnOption2.getText().toString());
+        });
+        binding.btnOption3.setOnClickListener(v -> {
+            checkAnswer(binding.btnOption3.getText().toString());
+        });
+        binding.btnOption4.setOnClickListener(v -> {
+            checkAnswer(binding.btnOption4.getText().toString());
+        });
+    }
+
+    private void checkAnswer(String userChoice) {
+        String answer = questionsList.get(currentQuestionIndex).getCorrectAnswer();
+        if(userChoice.equals(answer)) {
+            Toast.makeText(MainActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, "Incorrect!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void updateQuestion() {
