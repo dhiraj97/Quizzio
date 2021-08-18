@@ -1,14 +1,16 @@
 package com.example.quizizo.model;
 
+import java.util.Arrays;
+
 public class Question {
 
     private String question;
-    private boolean correctAnswer;
+    private String correctAnswer;
     private String[] options;
 
     public Question(){}
 
-    public Question(String question, boolean correctAnswer) {
+    public Question(String question, String correctAnswer) {
         this.question = question;
         this.correctAnswer = correctAnswer;
     }
@@ -30,11 +32,20 @@ public class Question {
         this.question = question;
     }
 
-    public boolean isCorrectAnswer() {
+    public String getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(boolean correctAnswer) {
+    public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "question='" + question + '\'' +
+                ", correctAnswer='" + correctAnswer + '\'' +
+                ", options=" + Arrays.toString(options) +
+                '}';
     }
 }

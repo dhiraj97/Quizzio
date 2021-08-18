@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.quizizo.MainActivity;
 import com.example.quizizo.controller.AppController;
 import com.example.quizizo.model.Question;
 
@@ -67,17 +68,39 @@ public class Repository {
     }
 
     public List<Question> getQuestions(final QuestionListAsyncResponse callBack) {
-        questionsURL = "https://opentdb.com/api.php?amount=" + numberOfQuestions + "&category="+category+"&type=boolean";
-        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.GET, questionsURL, null, response -> {
+        questionsURL = "https://opentdb.com/api.php?amount=" + numberOfQuestions + "&category="+category+"&type=multiple";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, questionsURL, null, response -> {
             try {
                 JSONArray jsonArray = response.getJSONArray("results");
 
+                String[] optionsArray = new String[4];
                 for(int i = 0; i < jsonArray.length(); i++){
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    Question question = new Question(Html.fromHtml(jsonObject.getString("question"), Html.FROM_HTML_MODE_COMPACT).toString(),
-                            jsonObject.getBoolean("correct_answer"));
                     Log.d("JsonObject", "getQuestions: "+ jsonObject.toString());
+                    Log.d("JsonObject", "getQuestions: "+ jsonObject.getString("incorrect_answers"));
+                    String quest = Html.fromHtml(jsonObject.getString("question"), Html.FROM_HTML_MODE_COMPACT).toString();
+                    String answer = Html.fromHtml(jsonObject.getString("correct_answer"), Html.FROM_HTML_MODE_COMPACT).toString();
+                    Question question = new Question(quest,answer);
+                    JSONArray incorrectAnswers = jsonObject.getJSONArray("incorrect_answers");
+
+                    //putting the correct answer on first index
+                    optionsArray[0] = answer;
+
+                    //putting incorrect answers on next indexes
+                    for (int j = 0; j < incorrectAnswers.length(); j++) {
+                        optionsArray[j+1] = incorrectAnswers.getString(j);
+                    }
+
+                    // shuffling options
+                    shuffle(optionsArray);
+
+                    //setOptions
+                    question.setOptions(optionsArray);
+
+                    Log.d("questions"+i, question.toString());
+
                     questionArrayList.add(question);
+
                 }
                 if(null != callBack) {
                     callBack.questionArray(questionArrayList);
@@ -90,8 +113,19 @@ public class Repository {
             Log.d("Questions", "Cannot Load Questions!");
         });
 
-       AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+       AppController.getInstance().addToRequestQueue(jsonObjectRequest);
 
         return questionArrayList;
+    }
+
+    private void shuffle(String[] optionsArray) {
+        for (int i = 0; i < optionsArray.length; i++) {
+            int s = i *  (int) (Math.random() * (optionsArray.length - i));
+
+            String temp = optionsArray[s];
+            optionsArray[s] = optionsArray[i];
+            optionsArray[i] = temp;
+
+        }
     }
 }

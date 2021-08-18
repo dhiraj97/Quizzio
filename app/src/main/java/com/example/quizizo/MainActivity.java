@@ -39,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
         questionsList = new Repository().getQuestions(questionArrayList -> {
             updateQuestion();
+        /*    for (Question question : questionArrayList) {
+                Log.d("Repo", question.toString());
+            }*/
+
         });
 
         new Repository().getCategories(categoryList -> {
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateQuestion() {
         Log.d(TAG, "updateQuestion: "+ questionsList.size());
+        binding.txtQuestionNumber.setText("Question "+ (currentQuestionIndex+1) + "/" + questionsList.size());
         binding.txtQuestion.setText(questionsList.get(currentQuestionIndex).getQuestion());
     }
 
