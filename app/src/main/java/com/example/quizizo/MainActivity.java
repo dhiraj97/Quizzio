@@ -1,8 +1,10 @@
 package com.example.quizizo;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private List<Question> questionsList;
     private CountDownTimer cdt;
+    MediaPlayer errorSound, correctAnswerSound;
 
     int currentQuestionIndex = 0;
     @Override
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         new Repository().setNumberOfQuestions(2);
         new Repository().setCategory(32);
 
+        errorSound = MediaPlayer.create(this, R.raw.animation_sounds_beep);
+        correctAnswerSound = MediaPlayer.create(this, R.raw.animation_sounds_bubbles);
 
         questionsList = new Repository().getQuestions(questionArrayList -> {
             updateQuestion();
@@ -110,9 +115,11 @@ public class MainActivity extends AppCompatActivity {
         String answer = questionsList.get(currentQuestionIndex).getCorrectAnswer();
         if(userChoice.equals(answer)) {
             Toast.makeText(MainActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
+            correctAnswerSound.start();
             nextQuestion();
         } else {
             Toast.makeText(MainActivity.this, "Incorrect!", Toast.LENGTH_SHORT).show();
+            errorSound.start();
             shakeAnimation();
             nextQuestion();
         }
