@@ -2,6 +2,7 @@ package com.example.quizizo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +23,7 @@ import com.example.quizizo.data.Repository;
 import com.example.quizizo.databinding.ActivityMainBinding;
 import com.example.quizizo.model.Question;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MAIN_ACTIVITY";
     private ActivityMainBinding binding;
     private List<Question> questionsList;
+    private CountDownTimer cdt;
 
     int currentQuestionIndex = 0;
     @Override
@@ -54,6 +57,23 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Repo", category);
             }
         });
+
+        final int milliseconds = 10000;
+        cdt = new CountDownTimer(milliseconds,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                binding.timer.setText(millisUntilFinished / 1000+ "");
+            }
+
+            @Override
+            public void onFinish() {
+                nextQuestion();
+                this.start();
+
+            }
+        };
+
+        cdt.start();
 
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void nextQuestion() {
+        cdt.start();
         currentQuestionIndex = (currentQuestionIndex + 1) % questionsList.size();
         updateQuestion();
     }
