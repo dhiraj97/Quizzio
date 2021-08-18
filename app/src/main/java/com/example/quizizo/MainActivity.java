@@ -7,8 +7,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
+import androidx.annotation.AnimatorRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -55,32 +58,49 @@ public class MainActivity extends AppCompatActivity {
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentQuestionIndex = (currentQuestionIndex + 1) % questionsList.size();
-                updateQuestion();
+                nextQuestion();
             }
         });
 
         binding.btnOption1.setOnClickListener(v -> {
             checkAnswer(binding.btnOption1.getText().toString());
+            updateQuestion();
         });
         binding.btnOption2.setOnClickListener(v -> {
             checkAnswer(binding.btnOption2.getText().toString());
+            updateQuestion();
         });
         binding.btnOption3.setOnClickListener(v -> {
             checkAnswer(binding.btnOption3.getText().toString());
+            updateQuestion();
         });
         binding.btnOption4.setOnClickListener(v -> {
             checkAnswer(binding.btnOption4.getText().toString());
+            updateQuestion();
         });
+    }
+
+    private void nextQuestion() {
+        currentQuestionIndex = (currentQuestionIndex + 1) % questionsList.size();
+        updateQuestion();
     }
 
     private void checkAnswer(String userChoice) {
         String answer = questionsList.get(currentQuestionIndex).getCorrectAnswer();
         if(userChoice.equals(answer)) {
             Toast.makeText(MainActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
+            nextQuestion();
         } else {
             Toast.makeText(MainActivity.this, "Incorrect!", Toast.LENGTH_SHORT).show();
+            shakeAnimation();
+            nextQuestion();
         }
+
+    }
+
+    public void shakeAnimation() {
+        Animation shake = AnimationUtils.loadAnimation(MainActivity.this, R.anim.shake_animation);
+        binding.cardview.setAnimation(shake);
 
     }
 
