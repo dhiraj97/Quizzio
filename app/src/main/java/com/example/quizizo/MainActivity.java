@@ -1,6 +1,7 @@
 package com.example.quizizo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
@@ -116,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         if(userChoice.equals(answer)) {
             Toast.makeText(MainActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
             correctAnswerSound.start();
+            fadeAnimation();
             nextQuestion();
         } else {
             Toast.makeText(MainActivity.this, "Incorrect!", Toast.LENGTH_SHORT).show();
@@ -126,9 +129,51 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void fadeAnimation() {
+        AlphaAnimation fade = new AlphaAnimation(1.0f,0.1f);
+        fade.setDuration(500);
+        fade.setRepeatCount(1);
+        fade.setRepeatMode(Animation.REVERSE);
+
+        binding.cardview.setAnimation(fade);
+
+        fade.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                binding.txtQuestion.setTextColor(Color.GREEN);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                binding.txtQuestion.setTextColor(Color.BLACK);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+    }
+
     public void shakeAnimation() {
         Animation shake = AnimationUtils.loadAnimation(MainActivity.this, R.anim.shake_animation);
         binding.cardview.setAnimation(shake);
+        shake.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                binding.txtQuestion.setTextColor(Color.RED);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                binding.txtQuestion.setTextColor(Color.BLACK);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
     }
 
@@ -155,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.settings:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 break;
-
         }
         return super.onOptionsItemSelected(item);
     }
